@@ -1,9 +1,9 @@
-﻿using CanchitaServices.Models.Repositories;
+﻿//using CanchitaServices.Models.Repositories;
 using Domain;
 using System;
 using System.Linq;
 
-namespace CanchitaServices.Models.Repositories
+namespace Domain.IRepositories
 {
     public interface IClienteRepository : IRepository<TCliente>
     {

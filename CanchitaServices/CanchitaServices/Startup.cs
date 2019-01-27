@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.IServices;
+using Application.Services;
 using CanchitaServices.Models;
 using CanchitaServices.Models.Repositories;
 using Domain;
+using Domain.IRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,7 +42,10 @@ namespace CanchitaServices
 
             services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores <AppIdentityDbContext>()
-            .AddDefaultTokenProviders();            services.AddTransient<IClienteRepository, EFClienteRepository>();            services.AddTransient<IDepartamentoRepository, EFDepartamentoRepository>();            services.AddTransient<IProvinciaRepository, EFProvinciaRepository>();            services.AddTransient<IDistritoRepository, EFDistritoRepository>();            services.AddTransient<ILocalRepository, EFLocalRepository>();
+            .AddDefaultTokenProviders();            services.AddTransient<IClienteRepository, EFClienteRepository>();            services.AddTransient<IDepartamentoRepository, EFDepartamentoRepository>();            services.AddTransient<IProvinciaRepository, EFProvinciaRepository>();            services.AddTransient<IDistritoRepository, EFDistritoRepository>();            services.AddTransient<ILocalRepository, EFLocalRepository>();
+
+            //DE LOS SERVICIOS
+            services.AddTransient<IDepartamentoServices, DepartamentoService>();            services.AddTransient<IProvinciaService, ProvinciaService>();            services.AddTransient<IDistritoService, DistritoService>();            services.AddTransient<ILocalService, LocalService>();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "CanchitaServices", Version = "v1" });
             });

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CanchitaServices.Models.Repositories
+namespace Domain.IRepositories
 {
     public interface ILocalRepository : IRepository<TLocal>
     {
