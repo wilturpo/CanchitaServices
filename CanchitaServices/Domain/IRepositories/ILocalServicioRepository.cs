@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.IRepositories
 {
-    public interface IAlquilerRepository : IRepository<TAlquiler>
+    public interface ILocalServicioRepository : IRepository<TLocalServicio>
     {
 
     }

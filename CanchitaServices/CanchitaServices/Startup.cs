@@ -44,11 +44,18 @@ namespace CanchitaServices
             .AddEntityFrameworkStores <AppIdentityDbContext>()
             .AddDefaultTokenProviders();            services.AddTransient<IClienteRepository, EFClienteRepository>();            services.AddTransient<IDepartamentoRepository, EFDepartamentoRepository>();            services.AddTransient<IProvinciaRepository, EFProvinciaRepository>();            services.AddTransient<IDistritoRepository, EFDistritoRepository>();            services.AddTransient<ILocalRepository, EFLocalRepository>();
             services.AddTransient<IServicioRepository, EFServicioRepository>();
+            services.AddTransient<ILocalServicioRepository, EFLocalServicioRepository>();
+            services.AddTransient<IImagenRepository, EFImagenRepository>();
 
             //DE LOS SERVICIOS
             services.AddTransient<IDepartamentoServices, DepartamentoService>();            services.AddTransient<IProvinciaService, ProvinciaService>();            services.AddTransient<IDistritoService, DistritoService>();            services.AddTransient<ILocalService, LocalService>();            services.AddTransient<IServicioService, ServicioService>();
+
             services.AddTransient<ICanchaService, CanchaService>();
             services.AddTransient<IAlquilerService, AlquilerService>();
+
+            services.AddTransient<ILocalServicioService, LocalServicioService>();
+            services.AddTransient<IImagenService, ImagenService>();
+
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "CanchitaServices", Version = "v1" });
@@ -72,7 +79,7 @@ namespace CanchitaServices
             {
                 app.UseHsts();
             }
-
+            //por si acaso
             app.UseHttpsRedirection();*/
             app.UseAuthentication();
             app.UseMvc();
