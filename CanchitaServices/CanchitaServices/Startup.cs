@@ -44,9 +44,11 @@ namespace CanchitaServices
             .AddEntityFrameworkStores <AppIdentityDbContext>()
             .AddDefaultTokenProviders();            services.AddTransient<IClienteRepository, EFClienteRepository>();            services.AddTransient<IDepartamentoRepository, EFDepartamentoRepository>();            services.AddTransient<IProvinciaRepository, EFProvinciaRepository>();            services.AddTransient<IDistritoRepository, EFDistritoRepository>();            services.AddTransient<ILocalRepository, EFLocalRepository>();
             services.AddTransient<IServicioRepository, EFServicioRepository>();
+            services.AddTransient<ILocalServicioRepository, EFLocalServicioRepository>();
 
             //DE LOS SERVICIOS
             services.AddTransient<IDepartamentoServices, DepartamentoService>();            services.AddTransient<IProvinciaService, ProvinciaService>();            services.AddTransient<IDistritoService, DistritoService>();            services.AddTransient<ILocalService, LocalService>();            services.AddTransient<IServicioService, ServicioService>();
+            services.AddTransient<ILocalServicioService, LocalServicioService>();
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "CanchitaServices", Version = "v1" });
