@@ -79,7 +79,7 @@ namespace CanchitaServices
             {
                 app.UseHsts();
             }
-            //por si acaso
+            //por si acaso otra vez
             app.UseHttpsRedirection();*/
             app.UseAuthentication();
             app.UseMvc();
