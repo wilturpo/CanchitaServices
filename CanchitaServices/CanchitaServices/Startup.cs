@@ -47,6 +47,8 @@ namespace CanchitaServices
 
             //DE LOS SERVICIOS
             services.AddTransient<IDepartamentoServices, DepartamentoService>();            services.AddTransient<IProvinciaService, ProvinciaService>();            services.AddTransient<IDistritoService, DistritoService>();            services.AddTransient<ILocalService, LocalService>();            services.AddTransient<IServicioService, ServicioService>();
+            services.AddTransient<ICanchaService, CanchaService>();
+            services.AddTransient<IAlquilerService, AlquilerService>();
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "CanchitaServices", Version = "v1" });
