@@ -46,6 +46,9 @@ namespace CanchitaServices
             services.AddTransient<IServicioRepository, EFServicioRepository>();
             services.AddTransient<ILocalServicioRepository, EFLocalServicioRepository>();
             services.AddTransient<IImagenRepository, EFImagenRepository>();
+            services.AddTransient<ICanchaRepository, EFCanchaRepository>();
+            services.AddTransient<ITurnoRepository, EFTurnoRepository>();
+            services.AddTransient<IPrecioRepository, EFPrecioRepository>();
 
             //DE LOS SERVICIOS
             services.AddTransient<IDepartamentoServices, DepartamentoService>();            services.AddTransient<IProvinciaService, ProvinciaService>();            services.AddTransient<IDistritoService, DistritoService>();            services.AddTransient<ILocalService, LocalService>();            services.AddTransient<IServicioService, ServicioService>();
@@ -55,6 +58,8 @@ namespace CanchitaServices
 
             services.AddTransient<ILocalServicioService, LocalServicioService>();
             services.AddTransient<IImagenService, ImagenService>();
+            services.AddTransient<ITurnoService, TurnoService>();
+            services.AddTransient<IPrecioService, PrecioService>();
 
 
             services.AddSwaggerGen(c => {
@@ -79,7 +84,7 @@ namespace CanchitaServices
             {
                 app.UseHsts();
             }
-            //por si acaso otra vez
+            //por si acaso otra vez jejeej xd
             app.UseHttpsRedirection();*/
             app.UseAuthentication();
             app.UseMvc();
