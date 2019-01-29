@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs;
+using Application.IServices;
 using Domain;
 using Domain.IRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -13,39 +15,41 @@ namespace CanchitaServices.Controllers
     [Route("api/[controller]")]
     public class CanchaController : Controller
     {
-        private ICanchaRepository repositorio;
-        public CanchaController(ICanchaRepository repo)
+        private ICanchaService Service;
+        public CanchaController(ICanchaService service)
         {
-            repositorio = repo;
-        }
+            Service = service;
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IQueryable<TCancha> Get()
+        public IList<CanchaDTO> Get()
         {
-            return repositorio.Items;
+            return Service.GetAll();
         }
 
         // GET api/<controller>/5
         [HttpGet("{CanchaId}")]
-        public TCancha Get(Guid CanchaId)
+
+        public CanchaDTO Get(Guid CanchaId)
         {
-            return repositorio.Items.Where(p => p.CanchaId == CanchaId).FirstOrDefault();
+
+            return Service.GetAll().Where(p => p.CanchaId == CanchaId).FirstOrDefault();
         }
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]TCancha cancha)
+        public async Task<IActionResult> Post([FromBody]CanchaDTO cancha)
         {
-            await repositorio.Save(cancha);
+            await Service.Insert(cancha);
             return Ok(true);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{CanchaId}")]
-        public async Task<IActionResult> Put(Guid CanchaId, [FromBody]TCancha cancha)
+        public async Task<IActionResult> Put(Guid CanchaId, [FromBody]CanchaDTO cancha)
         {
             cancha.CanchaId = CanchaId;
-            await repositorio.Save(cancha);
+            await Service.Insert(cancha);
             return Ok(true);
         }
 
@@ -53,7 +57,7 @@ namespace CanchitaServices.Controllers
         [HttpDelete("{CanchaId}")]
         public IActionResult Delete(Guid CanchaId)
         {
-            repositorio.Delete(CanchaId);
+            Service.Delete(CanchaId);
             return Ok(true);
         }
     }

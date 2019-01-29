@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs;
+using Application.IServices;
 using Domain;
 using Domain.IRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -13,39 +15,41 @@ namespace CanchitaServices.Controllers
     [Route("api/[controller]")]
     public class TurnoController : Controller
     {
-        private ITurnoRepository repositorio;
-        public TurnoController(ITurnoRepository repo)
+        private ITurnoService Service;
+        public TurnoController(ITurnoService service)
         {
-            repositorio = repo;
-        }
+            Service = service;
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IQueryable<TTurno> Get()
+        public IList<TurnoDTO> Get()
         {
-            return repositorio.Items;
+            return Service.GetAll();
         }
 
         // GET api/<controller>/5
         [HttpGet("{TurnoId}")]
-        public TTurno Get(Guid TurnoId)
+
+        public TurnoDTO Get(Guid TurnoId)
         {
-            return repositorio.Items.Where(p => p.TurnoId == TurnoId).FirstOrDefault();
+
+            return Service.GetAll().Where(p => p.TurnoId == TurnoId).FirstOrDefault();
         }
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]TTurno turno)
+        public async Task<IActionResult> Post([FromBody]TurnoDTO turno)
         {
-            await repositorio.Save(turno);
+            await Service.Insert(turno);
             return Ok(true);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{TurnoId}")]
-        public async Task<IActionResult> Put(Guid TurnoId, [FromBody]TTurno turno)
+        public async Task<IActionResult> Put(Guid TurnoId, [FromBody]TurnoDTO turno)
         {
             turno.TurnoId = TurnoId;
-            await repositorio.Save(turno);
+            await Service.Insert(turno);
             return Ok(true);
         }
 
@@ -53,7 +57,7 @@ namespace CanchitaServices.Controllers
         [HttpDelete("{TurnoId}")]
         public IActionResult Delete(Guid TurnoId)
         {
-            repositorio.Delete(TurnoId);
+            Service.Delete(TurnoId);
             return Ok(true);
         }
     }

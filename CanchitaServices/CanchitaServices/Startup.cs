@@ -49,9 +49,11 @@ namespace CanchitaServices
             services.AddTransient<ICanchaRepository, EFCanchaRepository>();
             services.AddTransient<ITurnoRepository, EFTurnoRepository>();
             services.AddTransient<IPrecioRepository, EFPrecioRepository>();
+            services.AddTransient<IAlquilerRepository, EFAlquilerRepository>();
 
             //DE LOS SERVICIOS
             services.AddTransient<IDepartamentoServices, DepartamentoService>();            services.AddTransient<IProvinciaService, ProvinciaService>();            services.AddTransient<IDistritoService, DistritoService>();            services.AddTransient<ILocalService, LocalService>();            services.AddTransient<IServicioService, ServicioService>();
+            services.AddTransient<IClienteService, ClienteService>();
 
             services.AddTransient<ICanchaService, CanchaService>();
             services.AddTransient<IAlquilerService, AlquilerService>();

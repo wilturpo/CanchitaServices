@@ -7,9 +7,9 @@ namespace Domain
     {
         public Guid ImaId { get; set; }
         public string ImaUrl { get; set; }
-        public Guid CanchaId { get; set; }
-        public Guid LocalId { get; set; }
-        public Guid LocServId { get; set; }
+        public Guid? CanchaId { get; set; }
+        public Guid? LocalId { get; set; }
+        public Guid? LocServId { get; set; }
 
         public TCancha Cancha { get; set; }
         public TLocalServicio LocServ { get; set; }

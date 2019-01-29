@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs;
+using Application.IServices;
 using CanchitaServices.Models.Repositories;
 using Domain;
 using Domain.IRepositories;
@@ -14,48 +16,49 @@ namespace CanchitaServices.Controllers
     [Route("api/[controller]")]
     public class ClienteController : Controller
     {
-        private IClienteRepository repositorio;
-        public ClienteController(IClienteRepository repo)
+        private IClienteService Service;
+        public ClienteController(IClienteService service)
         {
-            repositorio = repo;
-        }
+            Service = service;
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IQueryable<TCliente> Get()
+        public IList<ClienteDTO> Get()
         {
-            return repositorio.Items;
+            return Service.GetAll();
         }
 
         // GET api/<controller>/5
         [HttpGet("{ClienteId}")]
-        public TCliente Get(Guid ClienteId)
+
+        public ClienteDTO Get(Guid ClienteId)
         {
-            return repositorio.Items.Where(p => p.CliId == ClienteId).FirstOrDefault();
+
+            return Service.GetAll().Where(p => p.CliId == ClienteId).FirstOrDefault();
         }
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]TCliente cliente)
+        public async Task<IActionResult> Post([FromBody]ClienteDTO cliente)
         {
-            await repositorio.Save(cliente);
+            await Service.Insert(cliente);
             return Ok(true);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{ClienteId}")]
-        public async Task<IActionResult> Put(Guid ClienteId, [FromBody]TCliente cliente)
+        public async Task<IActionResult> Put(Guid ClienteId, [FromBody]ClienteDTO cliente)
         {
             cliente.CliId = ClienteId;
-            await repositorio.Save(cliente);
+            await Service.Insert(cliente);
             return Ok(true);
         }
-
 
         // DELETE api/<controller>/5
         [HttpDelete("{ClienteId}")]
         public IActionResult Delete(Guid ClienteId)
         {
-            repositorio.Delete(ClienteId);
+            Service.Delete(ClienteId);
             return Ok(true);
         }
     }

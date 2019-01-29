@@ -224,19 +224,19 @@ namespace Domain
                 entity.HasOne(d => d.Cancha)
                     .WithMany(p => p.TImagen)
                     .HasForeignKey(d => d.CanchaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    //.OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_imagen_T_cancha");
 
                 entity.HasOne(d => d.LocServ)
                     .WithMany(p => p.TImagen)
                     .HasForeignKey(d => d.LocServId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    //.OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_imagen_T_local_servicio");
 
                 entity.HasOne(d => d.Local)
                     .WithMany(p => p.TImagen)
                     .HasForeignKey(d => d.LocalId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    //.OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_imagen_T_local");
             });
 

@@ -11,53 +11,52 @@ using Microsoft.AspNetCore.Mvc;
 namespace CanchitaServices.Controllers
 {
     [Route("api/[controller]")]
-    public class ImagenController : Controller
+    public class AlquilerController : Controller
     {
-        private IImagenService Service;
-        public ImagenController(IImagenService service)
+        private IAlquilerService Service;
+        public AlquilerController(IAlquilerService service)
         {
             Service = service;
         }
         // GET: api/<controller>
         [HttpGet]
-        public IList<ImagenDTO> Get()
+        public IList<AlquilerDTO> Get()
         {
             return Service.GetAll();
         }
 
         // GET api/<controller>/5
-        [HttpGet("{ImagenId}")]
+        [HttpGet("{AlquilerId}")]
 
-        public ImagenDTO Get(Guid ImagenId)
+        public AlquilerDTO Get(Guid AlquilerId)
         {
 
-            return Service.GetAll().Where(p => p.ImaId == ImagenId).FirstOrDefault();
+            return Service.GetAll().Where(p => p.AlquiId == AlquilerId).FirstOrDefault();
         }
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]ImagenDTO imagen)
+        public async Task<IActionResult> Post([FromBody]AlquilerDTO alquiler)
         {
-            await Service.Insert(imagen);
+            await Service.Insert(alquiler);
             return Ok(true);
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{ImagenId}")]
-        public async Task<IActionResult> Put(Guid ImagenId, [FromBody]ImagenDTO imagen)
+        [HttpPut("{AlquilerId}")]
+        public async Task<IActionResult> Put(Guid AlquilerId, [FromBody]AlquilerDTO alquiler)
         {
-            imagen.ImaId = ImagenId;
-            await Service.Insert(imagen);
+            alquiler.AlquiId = AlquilerId;
+            await Service.Insert(alquiler);
             return Ok(true);
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{ImagenId}")]
-        public IActionResult Delete(Guid ImagenId)
+        [HttpDelete("{AlquilerId}")]
+        public IActionResult Delete(Guid AlquilerId)
         {
-            Service.Delete(ImagenId);
+            Service.Delete(AlquilerId);
             return Ok(true);
         }
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CanchitaServices.Models.Repositories
 {
-    public class EFAlquilerRepository
+    public class EFAlquilerRepository : IAlquilerRepository
     {
         public IQueryable<TAlquiler> Items => context.TAlquiler;
         private CanchitaDbContext context;

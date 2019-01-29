@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs;
+using Application.IServices;
 using Domain;
 using Domain.IRepositories;
 using Microsoft.AspNetCore.Mvc;
@@ -13,48 +15,49 @@ namespace CanchitaServices.Controllers
     [Route("api/[controller]")]
     public class PrecioController : Controller
     {
-        private IPrecioRepository repositorio;
-        public PrecioController(IPrecioRepository repo)
+        private IPrecioService Service;
+        public PrecioController(IPrecioService service)
         {
-            repositorio = repo;
-        }
+            Service = service;
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IQueryable<TPrecio> Get()
+        public IList<PrecioDTO> Get()
         {
-            return repositorio.Items;
+            return Service.GetAll();
         }
 
         // GET api/<controller>/5
         [HttpGet("{PrecioId}")]
-        public TPrecio Get(Guid PrecioId)
+
+        public PrecioDTO Get(Guid PrecioId)
         {
-            return repositorio.Items.Where(p => p.PrecId == PrecioId).FirstOrDefault();
+
+            return Service.GetAll().Where(p => p.PrecId == PrecioId).FirstOrDefault();
         }
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]TPrecio precio)
+        public async Task<IActionResult> Post([FromBody]PrecioDTO precio)
         {
-            await repositorio.Save(precio);
+            await Service.Insert(precio);
             return Ok(true);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{PrecioId}")]
-        public async Task<IActionResult> Put(Guid PrecioId, [FromBody]TPrecio precio)
+        public async Task<IActionResult> Put(Guid PrecioId, [FromBody]PrecioDTO precio)
         {
             precio.PrecId = PrecioId;
-            await repositorio.Save(precio);
+            await Service.Insert(precio);
             return Ok(true);
         }
-
 
         // DELETE api/<controller>/5
         [HttpDelete("{PrecioId}")]
         public IActionResult Delete(Guid PrecioId)
         {
-            repositorio.Delete(PrecioId);
+            Service.Delete(PrecioId);
             return Ok(true);
         }
     }
