@@ -8,6 +8,7 @@ using CanchitaServices.Models;
 using CanchitaServices.Models.Repositories;
 using Domain;
 using Domain.IRepositories;
+using Infraestructure.Persistencia;
 using Infraestructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

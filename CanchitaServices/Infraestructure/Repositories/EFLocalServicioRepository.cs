@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Domain.IRepositories;
+using Infraestructure.Persistencia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
