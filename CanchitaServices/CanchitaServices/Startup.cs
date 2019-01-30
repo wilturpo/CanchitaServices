@@ -69,6 +69,7 @@ namespace CanchitaServices
             services.AddTransient<IImagenService, ImagenService>();
             services.AddTransient<ITurnoService, TurnoService>();
             services.AddTransient<IPrecioService, PrecioService>();
+           
 
 
             //Validators 
