@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.DTOs;
 using Application.IServices;
 using Application.Services;
 using CanchitaServices.Models;
 using CanchitaServices.Models.Repositories;
 using Domain;
 using Domain.IRepositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Infraestructure.Persistencia;
 using Infraestructure.Repositories;
+using Infraestructure.Transversal.FluentValidations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +25,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+
 
 namespace CanchitaServices
 {
@@ -66,10 +71,15 @@ namespace CanchitaServices
             services.AddTransient<IPrecioService, PrecioService>();
 
 
+            //Validators 
+            services.AddTransient<IValidator<DepartamentoDTO>, DepartamentoDTOValidator>();
+            services.AddTransient<IValidator<ServicioDTO>, ServicioDTOValidator>();
+
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "CanchitaServices", Version = "v1" });
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

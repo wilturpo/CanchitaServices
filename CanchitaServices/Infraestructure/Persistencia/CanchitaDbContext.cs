@@ -135,7 +135,7 @@ namespace Infraestructure.Persistencia
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.CliApellidos)
-                    .IsRequired()
+                    //.IsRequired()
                     .HasColumnName("cli_apellidos")
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -146,13 +146,13 @@ namespace Infraestructure.Persistencia
                     .IsUnicode(false);
 
                 entity.Property(e => e.CliNombres)
-                    .IsRequired()
+                    //.IsRequired()
                     .HasColumnName("cli_nombres")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CliTelefono)
-                    .IsRequired()
+                    //.IsRequired()
                     .HasColumnName("cli_telefono")
                     .HasMaxLength(50)
                     .IsUnicode(false);
