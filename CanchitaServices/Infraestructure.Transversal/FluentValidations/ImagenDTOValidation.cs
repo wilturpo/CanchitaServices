@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Infraestructure.Transversal.FluentValidations
 {
-    public class LocalServicioDTOValidator : AbstractValidator<LocalServicioDTO>
+    public class ImagenDTOValidator : AbstractValidator<ImagenDTO>
     {
-        public LocalServicioDTOValidator()
+        public ImagenDTOValidator()
         {
+            RuleFor(x => x.ImaUrl).NotEmpty();
+            RuleFor(x => x.CanchaId).NotEmpty();
             RuleFor(x => x.LocalId).NotEmpty();
-            //RuleFor(x => x.LocalId).Length(10, 200);
-            RuleFor(x => x.ServId).NotEmpty();
-            
+            RuleFor(x => x.LocServId).NotEmpty();
         }
     }
 }

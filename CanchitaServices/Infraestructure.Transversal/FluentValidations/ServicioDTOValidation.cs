@@ -12,7 +12,7 @@ namespace Infraestructure.Transversal.FluentValidations
         {
             RuleFor(x => x.ServNombre).NotEmpty();
             RuleFor(x => x.ServNombre).Length(10, 200);
-            //hfcyf
+            
         }
     }
 }
