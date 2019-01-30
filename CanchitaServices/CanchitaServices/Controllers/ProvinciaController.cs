@@ -40,6 +40,12 @@ namespace CanchitaServices.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ProvinciaDTO provincia)
         {
+            //await Service.Insert(provincia);
+            //return Ok(true);
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Model is not Valid");
+            }
             await Service.Insert(provincia);
             return Ok(true);
         }
