@@ -11,7 +11,6 @@ namespace Infraestructure.Transversal.FluentValidations
         public LocalServicioDTOValidator()
         {
             RuleFor(x => x.LocalId).NotEmpty();
-            //RuleFor(x => x.LocalId).Length(10, 200);
             RuleFor(x => x.ServId).NotEmpty();
             
         }

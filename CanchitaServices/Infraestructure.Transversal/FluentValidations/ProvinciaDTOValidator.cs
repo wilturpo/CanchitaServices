@@ -11,7 +11,6 @@ namespace Infraestructure.Transversal.FluentValidations
         public ProvinciaDTOValidator()
         {
             RuleFor(x => x.ProvNombre).NotEmpty();
-            RuleFor(x => x.ProvNombre).Length(10, 200);
             RuleFor(x => x.DtoId).NotEmpty();
         }
     }

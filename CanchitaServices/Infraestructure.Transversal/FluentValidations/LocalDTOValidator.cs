@@ -11,7 +11,6 @@ namespace Infraestructure.Transversal.FluentValidations
         public LocalDTOValidator()
         {
             RuleFor(x => x.LocalDescripcion).NotEmpty();
-            //RuleFor(x => x.LocalDescripcion).Length(10, 200);
             RuleFor(x => x.LocalNombre).NotEmpty();
             RuleFor(x => x.LocalDireccion).NotEmpty();
             RuleFor(x => x.LocalHoraApertura).NotEmpty();

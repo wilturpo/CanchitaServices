@@ -9,7 +9,7 @@ namespace Infraestructure.Transversal.FluentValidations
         public DepartamentoDTOValidator()
         {
             RuleFor(x => x.DtoNombre).NotEmpty();
-            RuleFor(x => x.DtoNombre).Length(10, 200);
+            
             
         }
     }

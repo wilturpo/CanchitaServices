@@ -11,8 +11,6 @@ namespace Infraestructure.Transversal.FluentValidations
         public ServicioDTOValidator()
         {
             RuleFor(x => x.ServNombre).NotEmpty();
-            RuleFor(x => x.ServNombre).Length(10, 200);
-            
         }
     }
 }

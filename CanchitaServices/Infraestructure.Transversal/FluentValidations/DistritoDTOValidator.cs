@@ -11,7 +11,7 @@ namespace Infraestructure.Transversal.FluentValidations
         public DistritoDTOValidator()
         {
             RuleFor(x => x.DistDescripcion).NotEmpty();
-            RuleFor(x => x.DistDescripcion).Length(10, 200);
+           
             RuleFor(x => x.ProvId).NotEmpty();
             
         }
