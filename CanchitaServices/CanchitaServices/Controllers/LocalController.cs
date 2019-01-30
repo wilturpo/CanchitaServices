@@ -41,6 +41,12 @@ namespace CanchitaServices.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]LocalDTO local)
         {
+            //await Service.Insert(local);
+            //return Ok(true);
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Model is not Valid");
+            }
             await Service.Insert(local);
             return Ok(true);
         }

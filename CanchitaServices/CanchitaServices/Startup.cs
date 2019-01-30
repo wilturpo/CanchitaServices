@@ -77,7 +77,9 @@ namespace CanchitaServices
             services.AddTransient<IValidator<ServicioDTO>, ServicioDTOValidator>();
             services.AddTransient<IValidator<LocalServicioDTO>, LocalServicioDTOValidator>();
             services.AddTransient<IValidator<ImagenDTO>, ImagenDTOValidator>();
-
+            services.AddTransient<IValidator<ProvinciaDTO>, ProvinciaDTOValidator>();
+            services.AddTransient<IValidator<DistritoDTO>, DistritoDTOValidator>();
+            services.AddTransient<IValidator<LocalDTO>, LocalDTOValidator>();
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "CanchitaServices", Version = "v1" });
