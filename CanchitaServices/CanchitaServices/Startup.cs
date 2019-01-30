@@ -74,6 +74,7 @@ namespace CanchitaServices
             //Validators 
             services.AddTransient<IValidator<DepartamentoDTO>, DepartamentoDTOValidator>();
             services.AddTransient<IValidator<ServicioDTO>, ServicioDTOValidator>();
+            services.AddTransient<IValidator<LocalServicioDTO>, LocalServicioDTOValidator>();
 
 
             services.AddSwaggerGen(c => {

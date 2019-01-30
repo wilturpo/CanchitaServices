@@ -10,6 +10,7 @@ namespace Infraestructure.Transversal.FluentValidations
         {
             RuleFor(x => x.DtoNombre).NotEmpty();
             RuleFor(x => x.DtoNombre).Length(10, 200);
+            //hfctdy
         }
     }
 }
